@@ -1,94 +1,115 @@
-//challenge 1 
 
-function slice1(foods){
-    var  modifiedFood = foods.slice(1,4);
-    return modifiedFood;
-    
-}
-
-//challenge 2
-
-function splice1(foods){
-    foods.splice(2, 0, "noodles", "icecream");
-    modifiedFood = foods;
-    return modifiedFood;
-}
-
-//challenge 3
-
-function checkEven(num)
+function addChocolates(chocolates,color,count)
 {
-    return num%2==0;
-}
-
-function checkPrime(num)
-{
-    let count=0;
-    for(let i=2;i<num-1;i++)
+    for(let i=0;i<count;i++)
     {
-        if(num%i==0)
-        {
-            count++;
-        }
-        if(count>=1)
-        {
-            return num;
-        }   
+        chocolates.splice(0,0,color);
     }
+    return chocolates;  
 }
 
-//challenge 4
 
-function checknonPrime(num)
+function removeChocolates(chocolates,numbers)
 {
-    let count=0;
-    for(let i=2;i<num-1;i++)
-    {
-        if(num%i==0)
-        {
-            count++;
-        }     
-    }
-    if(count<1)
-    {
-        return num;
-    } 
+    var c1=chocolates.slice(numbers,chocolates.length);
+    chocolates=c1;
+    return chocolates;
 }
 
-//challenge 5
+function dispenseChocolates(n,chocolates)
+{
+    return chocolates.slice(-n);
+}
 
-var anon = a => {
-    var b=[];
-    for(let i=0;i<a.length;i++)
+function noOfChocolates(chocolates)
+{
+    var  a1=[];
+    var array=['green', 'silver', 'blue', 'crimson', 'purple', 'red', 'pink'];
+    for(let i=0;i<array.length;i++)
     {
-        
-        if(a[i]%2==0)
-        {
-            b.push(a[i]);
-        }
        
+        var count=0;
+        for(let j=0;j<chocolates.length;j++)
+        {
+            if(array[i]==chocolates[j])
+            {
+                count++;
+            }
+        }
+        a1.push(count);
     }
-    return b;
-};
+    return a1;
+} 
 
-//challenge 6
-
-function multiply(num) {
-    return num * num;
+function dispenseChocolatesOfColor(chocolate,n,color)
+{
+    var givenColor=[]
+    for(let i=chocolate.length-1;i>=0;i--)
+    {
+        if(chocolate[i]==color && n!=0)
+        {
+            givenColor.push(chocolate[i])
+            chocolate.splice(i,1)
+            n--
+        }
+    }
+    return chocolate;
 }
 
-//challenge 7
-
-function  multiply(myArray)
+function sortChocolateBasedOnCount(chocolates)
 {
-    var val = myArray.reduce((prev, curr) => prev * curr);
-    return val;
+    var array=['green', 'silver', 'blue', 'crimson', 'purple', 'red', 'pink'];
+    var x=noOfChocolates(chocolates)
+    for(let i=0;i<x.length-1;i++)
+    {
+        for(let j=i+1;j<x.length;j++)
+        {
+            if(x[i]<x[j])
+            {
+                let temp=x[i]
+                x[i]=x[j]
+                x[j]=temp
+
+                let stemp=array[i]
+                array[i]=array[j]
+                array[j]=stemp
+            }
+        }
+    }
+
+    var result=[]
+    for(let i=0;i<array.length;i++)
+    {
+        for(let j=0;j<x[i];j++)
+        {
+            result.push(array[i])
+        }
+    }
+    return(result)
 }
 
+function changeChocolateColor(chocolates,n,color,finalColor){
+    for(let i=0;i<chocolates.length;i++)
+    {
+         if(chocolates[i]==color && n!=0)
+         {
+             chocolates[i]=finalColor
+             n--;
+         }
+    }
+    return(chocolates);
+}
 
-function multiply1(myArray)
+function changeChocolateColorAllofxCount(chocolates,finalColor,color)
 {
-    var b = myArray.map(x => x * 2);
-    var val = b.reduce((prev, curr) => prev * curr);
-    return val;
+    var count=0
+    for(let i=chocolates.length-1;i>=0;i--)
+    {
+        if(chocolates[i]==color)
+        {
+            chocolates[i]=finalColor
+            count++
+        }
+    }
+    return [chocolates,count]
 }
